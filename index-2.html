@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeafShelf | Home 2</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-xl sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home 1</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index-2.html">Home 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    <button id="rtl-toggle" class="rtl-toggle"><i class="fa-solid fa-right-left"></i></button>
+                    <a href="signup.html" class="btn btn-premium btn-sm">Signup</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero with Reading Lounge -->
+    <section class="hero-slider-section" style="min-height: 700px; display: flex; align-items: center;">
+        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1920&q=80"
+            alt="Reading Lounge" class="hero-bg" style="animation: none;">
+        <div class="container position-relative z-2">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-9 glass-panel p-5" data-aos="fade-down" data-aos-duration="1200">
+                    <h1 class="display-4 fw-bold text-dark mb-4" style="color: var(--primary-color) !important;">Find
+                        Your Next Great Adventure</h1>
+                    <p class="lead text-dark mb-4" style="color: var(--text-secondary) !important;">Step into our
+                        reading lounge, grab a coffee, and lose yourself in a world of words.</p>
+                    <form class="d-flex max-w-lg mx-auto gap-2" style="max-width: 600px;">
+                        <input type="text" class="form-control form-control-lg rounded-pill px-4"
+                            placeholder="Search by book title, author, or ISBN...">
+                        <button class="btn btn-premium rounded-pill px-4" type="submit"><i
+                                class="fa-solid fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. New Arrivals (Slide Up) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+                <div class="section-title text-start m-0">
+                    <h2 class="m-0">New Arrivals</h2>
+                    <p class="m-0">Fresh off the press, straight to our shelves.</p>
+                </div>
+                <a href="books.html" class="text-decoration-none fw-bold" style="color: var(--secondary-color);">See All
+                    <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="premium-card h-100 position-relative group">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 z-1">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=400&q=80"
+                            class="card-img-top p-3" alt="New Book 1" style="height: 300px; object-fit: cover;">
+                        <div class="card-body pt-0 text-center">
+                            <h5 class="fw-bold">The Silent Patient</h5>
+                            <p class="text-muted small">Alex Michaelides</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="premium-card h-100 position-relative group">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 z-1">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?auto=format&fit=crop&w=400&q=80"
+                            class="card-img-top p-3" alt="New Book 2" style="height: 300px; object-fit: cover;">
+                        <div class="card-body pt-0 text-center">
+                            <h5 class="fw-bold">A Little Life</h5>
+                            <p class="text-muted small">Hanya Yanagihara</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="premium-card h-100 position-relative group">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 z-1">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80"
+                            class="card-img-top p-3" alt="New Book 3" style="height: 300px; object-fit: cover;">
+                        <div class="card-body pt-0 text-center">
+                            <h5 class="fw-bold">Atomic Habits</h5>
+                            <p class="text-muted small">James Clear</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="premium-card h-100 position-relative group">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 z-1">NEW</span>
+                        <img src="https://images.pexels.com/photos/5430814/pexels-photo-5430814.jpeg"
+                            class="card-img-top p-3" alt="New Book 4" style="height: 300px; object-fit: cover;">
+                        <div class="card-body pt-0 text-center">
+                            <h5 class="fw-bold">Dune</h5>
+                            <p class="text-muted small">Frank Herbert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Featured Authors (Zoom In) -->
+    <section class="section-padding" style="background-color: var(--card-bg);">
+        <div class="container text-center">
+            <div class="section-title" data-aos="zoom-in">
+                <h2>Featured Authors</h2>
+                <p>Meet the brilliant minds behind this month's most talked-about books.</p>
+            </div>
+
+            <div class="row justify-content-center g-5 mt-3">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-center">
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Author 1"
+                            class="rounded-circle mb-3 shadow-lg"
+                            style="width: 150px; height: 150px; object-fit: cover; border: 5px solid var(--accent-color);">
+                        <h4 class="mb-1">George R. Martin</h4>
+                        <p class="text-muted">Fantasy Writer</p>
+                        <a href="books.html" class="btn btn-outline-premium btn-sm rounded-pill">View Books</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-center">
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Author 2"
+                            class="rounded-circle mb-3 shadow-lg"
+                            style="width: 150px; height: 150px; object-fit: cover; border: 5px solid var(--accent-color);">
+                        <h4 class="mb-1">J.K. Rowling</h4>
+                        <p class="text-muted">Children's Fiction</p>
+                        <a href="books.html" class="btn btn-outline-premium btn-sm rounded-pill">View Books</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-center">
+                        <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Author 3"
+                            class="rounded-circle mb-3 shadow-lg"
+                            style="width: 150px; height: 150px; object-fit: cover; border: 5px solid var(--accent-color);">
+                        <h4 class="mb-1">Stephen King</h4>
+                        <p class="text-muted">Horror & Mystery</p>
+                        <a href="books.html" class="btn btn-outline-premium btn-sm rounded-pill">View Books</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Staff Picks (Flip) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Staff Picks</h2>
+                <p>Personal recommendations from the LeafShelf team.</p>
+            </div>
+
+            <div class="row g-4 align-items-center mb-5" data-aos="flip-up">
+                <div class="col-md-6 text-center text-md-end pe-md-5">
+                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80"
+                        alt="Staff Pick 1" class="img-fluid rounded shadow-lg" style="max-height: 400px;">
+                </div>
+                <div class="col-md-6 ps-md-5">
+                    <span class="text-uppercase fw-bold text-muted mb-2 d-block"
+                        style="color: var(--secondary-color) !important;">Sarah's Pick</span>
+                    <h3 class="fw-bold mb-3">The Great Gatsby</h3>
+                    <p class="text-muted mb-4 lead">"A timeless classic that explores the roaring twenties and the
+                        American dream. I re-read this every year and always find something new."</p>
+                    <a href="books.html" class="btn btn-premium">Borrow Now</a>
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-center flex-md-row-reverse" data-aos="flip-up" data-aos-delay="100">
+                <div class="col-md-6 text-center text-md-start ps-md-5">
+                    <img src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=400&q=80"
+                        alt="Staff Pick 2" class="img-fluid rounded shadow-lg" style="max-height: 400px;">
+                </div>
+                <div class="col-md-6 text-md-end pe-md-5">
+                    <span class="text-uppercase fw-bold text-muted mb-2 d-block"
+                        style="color: var(--secondary-color) !important;">David's Pick</span>
+                    <h3 class="fw-bold mb-3">1984</h3>
+                    <p class="text-muted mb-4 lead">"George Orwell's dystopian masterpiece is more relevant today than
+                        ever. A must-read for anyone interested in politics and society."</p>
+                    <a href="books.html" class="btn btn-premium">Borrow Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Reading Community (Slide In) -->
+    <section class="section-padding position-relative" style="background-color: var(--card-bg); overflow: hidden;">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="slide-right">
+                    <h2 class="mb-4 display-5 fw-bold" style="color: var(--primary-color);">Join Our Reading Community
+                    </h2>
+                    <p class="text-muted mb-4 fs-5">LeafShelf is more than a library; it's a place where book lovers
+                        connect. Join our book clubs, attend author readings, and participate in lively discussions.</p>
+                    <div class="d-flex gap-4 mb-4">
+                        <div class="text-center">
+                            <h3 class="fw-bold counter-value mb-1" data-count="500"
+                                style="color: var(--secondary-color);">0</h3>
+                            <span class="text-muted small text-uppercase">Active Members</span>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="fw-bold counter-value mb-1" data-count="120"
+                                style="color: var(--secondary-color);">0</h3>
+                            <span class="text-muted small text-uppercase">Monthly Events</span>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="fw-bold counter-value mb-1" data-count="50"
+                                style="color: var(--secondary-color);">0</h3>
+                            <span class="text-muted small text-uppercase">Book Clubs</span>
+                        </div>
+                    </div>
+                    <a href="membership.html" class="btn btn-premium mt-3">Become a Member</a>
+                </div>
+                <div class="col-lg-6 position-relative" data-aos="slide-left">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=800&q=80"
+                        alt="Community" class="img-fluid rounded-4 shadow-lg">
+                    <div class="position-absolute top-0 start-0 translate-middle p-3 bg-white rounded-circle shadow-lg d-none d-md-block"
+                        style="animation: float 4s ease-in-out infinite;">
+                        <i class="fa-solid fa-users fs-2" style="color: var(--primary-color);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Newsletter CTA (Fade) -->
+    <section class="py-5" style="background-color: var(--primary-color);" data-aos="fade">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-8 text-center text-white">
+                    <h3 class="mb-3 text-white">Never Miss a Chapter</h3>
+                    <p class="mb-4 text-white-50">Sign up for our weekly newsletter for reading tips, new arrivals, and
+                        event updates.</p>
+                    <form class="d-flex max-w-lg mx-auto bg-white p-2 rounded-pill shadow-sm" style="max-width: 500px;">
+                        <input type="email" class="form-control border-0 shadow-none px-3"
+                            placeholder="Enter your email" required style="background: transparent;">
+                        <button type="submit" class="btn btn-premium m-0 rounded-pill px-4">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a class="navbar-brand mb-3 d-inline-block" href="index.html">
+                        <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+                    </a>
+                    <p class="text-muted mb-4 pe-lg-4">Your neighborhood sanctuary for books, knowledge, and community.
+                        Discover your next great read with us.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="books.html">Fiction</a></li>
+                        <li><a href="books.html">Non-Fiction</a></li>
+                        <li><a href="books.html">Children's Books</a></li>
+                        <li><a href="books.html">Academic</a></li>
+                        <li><a href="books.html">Self-Help</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-location-dot mt-1" style="color: var(--secondary-color);"></i>
+                            <span>123 Reading Lane, Book District, NY 10001</span>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-phone mt-1" style="color: var(--secondary-color);"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="d-flex gap-3 text-muted">
+                            <i class="fa-solid fa-envelope mt-1" style="color: var(--secondary-color);"></i>
+                            <span>hello@leafshelf.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2026 LeafShelf Library. All Rights Reserved.</p>
+                <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

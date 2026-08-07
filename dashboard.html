@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard | LeafShelf</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+        body {
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all var(--transition-normal);
+            overflow-y: auto;
+            padding-bottom: 30px;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            padding: 5px 20px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            border-radius: 12px;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: var(--primary-color);
+            color: var(--bg-color) !important;
+        }
+        
+        .sidebar-menu .menu-title {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            margin: 20px 0 10px 20px;
+            display: block;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            transition: all var(--transition-normal);
+            min-height: 100vh;
+        }
+        
+        .topbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+        
+        .notification-btn .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.6rem;
+            background: var(--secondary-color);
+        }
+        
+        .profile-dropdown img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-color);
+            cursor: pointer;
+        }
+        
+        .dashboard-container {
+            padding: 30px;
+        }
+        
+        /* Widget Cards */
+        .widget-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-fast);
+        }
+        
+        .widget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .widget-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .sidebar-overlay.show {
+                display: block;
+            }
+            .topbar {
+                padding: 15px;
+            }
+            .dashboard-container {
+                padding: 15px;
+            }
+        }
+        
+        /* Dashboard Dynamic Sections */
+        .dashboard-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        .dashboard-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="text-decoration-none d-flex align-items-center gap-2">
+                <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon" style="width: 24px; height: 24px;">
+                <h4 class="m-0 fw-bold" style="font-family: var(--font-heading); color: var(--primary-color);">LeafShelf</h4>
+            </a>
+            <button class="btn btn-sm d-lg-none" id="closeSidebar"><i class="fa-solid fa-xmark fs-4 text-muted"></i></button>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <span class="menu-title">Main</span>
+            <li><a href="#section-dashboard" class="active"><i class="fa-solid fa-border-all w-20px text-center"></i> Dashboard</a></li>
+            <li><a href="#section-browse-books"><i class="fa-solid fa-compass w-20px text-center"></i> Browse Books</a></li>
+            <li><a href="#section-search-catalog"><i class="fa-solid fa-search w-20px text-center"></i> Search Catalog</a></li>
+            
+            <span class="menu-title">My Library</span>
+            <li><a href="#section-borrow-requests"><i class="fa-solid fa-hand-holding w-20px text-center"></i> Borrow Requests</a></li>
+            <li><a href="#section-reserved-books"><i class="fa-solid fa-bookmark w-20px text-center"></i> Reserved Books</a></li>
+            <li><a href="#section-borrowed-books"><i class="fa-solid fa-book-open-reader w-20px text-center"></i> Borrowed Books</a></li>
+            <li><a href="#section-due-dates"><i class="fa-solid fa-clock w-20px text-center"></i> Due Dates</a></li>
+            <li><a href="#section-renew-books"><i class="fa-solid fa-clock-rotate-left w-20px text-center"></i> Renew Books</a></li>
+            <li><a href="#section-reading-history"><i class="fa-solid fa-list-check w-20px text-center"></i> Reading History</a></li>
+            
+            <span class="menu-title">Account</span>
+            <li><a href="#section-membership"><i class="fa-solid fa-id-card w-20px text-center"></i> Membership</a></li>
+            <li><a href="#section-notifications"><i class="fa-solid fa-bell w-20px text-center"></i> Notifications <span class="badge bg-danger ms-auto">3</span></a></li>
+            <li><a href="#section-profile"><i class="fa-solid fa-user w-20px text-center"></i> Profile</a></li>
+            <li><a href="#section-settings"><i class="fa-solid fa-gear w-20px text-center"></i> Settings</a></li>
+            <li><a href="#" id="logout-btn" class="text-danger mt-3"><i class="fa-solid fa-arrow-right-from-bracket w-20px text-center"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-link text-dark p-0 d-lg-none" id="toggleSidebar">
+                    <i class="fa-solid fa-bars fs-4" style="color: var(--text-primary);"></i>
+                </button>
+                <h4 class="m-0 fw-bold d-none d-sm-block">Welcome back, Emily!</h4>
+            </div>
+            
+            <div class="topbar-right">
+                <button id="rtl-toggle" class="btn text-muted" title="Toggle RTL/LTR"><i class="fa-solid fa-right-left"></i></button>
+                <button id="theme-toggle" class="btn text-muted"><i class="fa-solid fa-moon"></i></button>
+                <button class="notification-btn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge rounded-pill">3</span>
+                </button>
+                <div class="dropdown profile-dropdown">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" style="background: var(--card-bg);">
+                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2 text-muted"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2 text-muted"></i> Settings</a></li>
+                        <li><hr class="dropdown-divider border-secondary opacity-25"></li>
+                        <li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+            
+            <!-- 1. Dashboard Overview Section -->
+            <section id="section-dashboard" class="dashboard-section active">
+            <!-- Widgets -->
+            <div class="row g-4 mb-4">
+                <div class="col-xl-3 col-sm-6">
+                    <div class="widget-card">
+                        <div>
+                            <p class="text-muted small mb-1 fw-bold text-uppercase">Total Borrowed</p>
+                            <h2 class="m-0 fw-bold">14</h2>
+                        </div>
+                        <div class="widget-icon" style="background: rgba(26,54,38,0.1); color: var(--primary-color);">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="widget-card">
+                        <div>
+                            <p class="text-muted small mb-1 fw-bold text-uppercase">Due Soon</p>
+                            <h2 class="m-0 fw-bold text-danger">2</h2>
+                        </div>
+                        <div class="widget-icon" style="background: rgba(220,53,69,0.1); color: #dc3545;">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="widget-card">
+                        <div>
+                            <p class="text-muted small mb-1 fw-bold text-uppercase">Active Reservations</p>
+                            <h2 class="m-0 fw-bold text-warning">3</h2>
+                        </div>
+                        <div class="widget-icon" style="background: rgba(255,193,7,0.1); color: #ffc107;">
+                            <i class="fa-solid fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="widget-card">
+                        <div>
+                            <p class="text-muted small mb-1 fw-bold text-uppercase">Membership</p>
+                            <h2 class="m-0 fw-bold" style="color: var(--secondary-color);">Premium</h2>
+                        </div>
+                        <div class="widget-icon" style="background: rgba(139,90,43,0.1); color: var(--secondary-color);">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4 mb-4">
+                <!-- Charts -->
+                <div class="col-lg-8">
+                    <div class="premium-card p-4 h-100 border-0 shadow-sm" style="background: var(--card-bg);">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold m-0">Reading Activity (This Year)</h5>
+                            <select class="form-select form-select-sm w-auto bg-transparent border-secondary text-muted">
+                                <option>2026</option>
+                                <option>2025</option>
+                            </select>
+                        </div>
+                        <canvas id="readingChart" height="100"></canvas>
+                    </div>
+                </div>
+                <!-- Mini Notification Panel -->
+                <div class="col-lg-4">
+                    <div class="premium-card p-4 h-100 border-0 shadow-sm" style="background: var(--card-bg);">
+                        <h5 class="fw-bold mb-4">Recent Notifications</h5>
+                        <ul class="list-unstyled m-0">
+                            <li class="d-flex gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+                                <div class="bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px;">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold fs-6 text-dark">Book Due Tomorrow</h6>
+                                    <p class="text-muted small m-0">"The Art of Design" is due on Oct 25.</p>
+                                </div>
+                            </li>
+                            <li class="d-flex gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+                                <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px;">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold fs-6 text-dark">Reservation Available</h6>
+                                    <p class="text-muted small m-0">"Dune" is now available to pick up.</p>
+                                </div>
+                            </li>
+                            <li class="d-flex gap-3">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background-color: rgba(26,54,38,0.1) !important; color: var(--primary-color) !important;">
+                                    <i class="fa-solid fa-calendar"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold fs-6 text-dark">Event Reminder</h6>
+                                    <p class="text-muted small m-0">Monthly Fiction Book Club starts in 2 hours.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tables / Current Books -->
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="premium-card p-4 border-0 shadow-sm" style="background: var(--card-bg);">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold m-0">Currently Borrowed Books</h5>
+                            <a href="#" class="btn btn-sm btn-outline-premium rounded-pill">View History</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" style="border-color: var(--border-color);">
+                                <thead>
+                                    <tr class="text-muted small text-uppercase">
+                                        <th class="ps-0 border-top-0">Book Title</th>
+                                        <th class="border-top-0">Author</th>
+                                        <th class="border-top-0">Borrowed On</th>
+                                        <th class="border-top-0">Due Date</th>
+                                        <th class="border-top-0">Status</th>
+                                        <th class="text-end pe-0 border-top-0">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ps-0">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=100&q=80" alt="Book" class="rounded" style="width: 40px; height: 50px; object-fit: cover;">
+                                                <span class="fw-bold">The Art of Design</span>
+                                            </div>
+                                        </td>
+                                        <td>Sarah Jenkins</td>
+                                        <td>Oct 11, 2026</td>
+                                        <td class="fw-bold text-danger">Oct 25, 2026</td>
+                                        <td><span class="badge bg-danger">Due Soon</span></td>
+                                        <td class="text-end pe-0">
+                                            <button class="btn btn-sm btn-premium rounded-pill">Renew</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=100&q=80" alt="Book" class="rounded" style="width: 40px; height: 50px; object-fit: cover;">
+                                                <span class="fw-bold">Modern Architecture</span>
+                                            </div>
+                                        </td>
+                                        <td>David Miller</td>
+                                        <td>Oct 15, 2026</td>
+                                        <td>Oct 29, 2026</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td class="text-end pe-0">
+                                            <button class="btn btn-sm btn-outline-premium rounded-pill">Renew</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            
+            <!-- 2. Browse Books Section -->
+            <section id="section-browse-books" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Browse Books</h3>
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                    <div class="d-flex gap-2 w-100 w-md-auto">
+                        <select class="form-select bg-light border-0"><option>All Genres</option><option>Fiction</option><option>Non-Fiction</option></select>
+                        <select class="form-select bg-light border-0"><option>Sort by: Newest</option><option>Sort by: Popular</option></select>
+                    </div>
+                    <div class="input-group" style="max-width: 300px;">
+                        <input type="text" class="form-control bg-light border-0" placeholder="Search books...">
+                        <button class="btn btn-premium"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="premium-card p-3 text-center h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=300&q=80" alt="Book" class="img-fluid rounded mb-3 shadow-sm" style="height: 250px; object-fit: cover; width: 100%;">
+                            <h6 class="fw-bold mb-1 text-truncate">The Art of Design</h6>
+                            <p class="text-muted small mb-3">Sarah Jenkins</p>
+                            <button class="btn btn-outline-premium btn-sm w-100 rounded-pill">View Details</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="premium-card p-3 text-center h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=300&q=80" alt="Book" class="img-fluid rounded mb-3 shadow-sm" style="height: 250px; object-fit: cover; width: 100%;">
+                            <h6 class="fw-bold mb-1 text-truncate">Modern Architecture</h6>
+                            <p class="text-muted small mb-3">David Miller</p>
+                            <button class="btn btn-outline-premium btn-sm w-100 rounded-pill">View Details</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="premium-card p-3 text-center h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=300&q=80" alt="Book" class="img-fluid rounded mb-3 shadow-sm" style="height: 250px; object-fit: cover; width: 100%;">
+                            <h6 class="fw-bold mb-1 text-truncate">History of the World</h6>
+                            <p class="text-muted small mb-3">James Cole</p>
+                            <button class="btn btn-outline-premium btn-sm w-100 rounded-pill">View Details</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="premium-card p-3 text-center h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=300&q=80" alt="Book" class="img-fluid rounded mb-3 shadow-sm" style="height: 250px; object-fit: cover; width: 100%;">
+                            <h6 class="fw-bold mb-1 text-truncate">The Forgotten Letters</h6>
+                            <p class="text-muted small mb-3">Emily Thorne</p>
+                            <button class="btn btn-outline-premium btn-sm w-100 rounded-pill">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-5">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link border-0 text-muted" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link border-0 bg-primary text-white rounded" style="background-color: var(--secondary-color) !important;" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-dark" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-dark" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link border-0 text-dark" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+            
+            <!-- 3. Search Catalog Section -->
+            <section id="section-search-catalog" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Advanced Search Catalog</h3>
+                <div class="premium-card p-4 p-md-5 border-0 shadow-sm">
+                    <form class="row g-4">
+                        <div class="col-md-6"><label class="form-label fw-bold">Title / Keyword</label><input type="text" class="form-control form-control-lg bg-light border-0" placeholder="e.g. Harry Potter"></div>
+                        <div class="col-md-6"><label class="form-label fw-bold">Author</label><input type="text" class="form-control form-control-lg bg-light border-0" placeholder="e.g. J.K. Rowling"></div>
+                        <div class="col-md-4"><label class="form-label fw-bold">Genre</label><select class="form-select form-select-lg bg-light border-0"><option>Any Genre</option><option>Fiction</option><option>Non-Fiction</option></select></div>
+                        <div class="col-md-4"><label class="form-label fw-bold">ISBN</label><input type="text" class="form-control form-control-lg bg-light border-0" placeholder="e.g. 978-3-16-148410-0"></div>
+                        <div class="col-md-4"><label class="form-label fw-bold">Availability</label><select class="form-select form-select-lg bg-light border-0"><option>Show All</option><option>Available Now</option></select></div>
+                        <div class="col-12 text-end mt-4"><button type="submit" class="btn btn-premium btn-lg px-5 rounded-pill"><i class="fa-solid fa-search me-2"></i> Find Books</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 4. Borrow Requests Section -->
+            <section id="section-borrow-requests" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Borrow Requests</h3>
+                <div class="premium-card p-4 border-0 shadow-sm table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead><tr class="text-muted small text-uppercase"><th class="border-top-0">Book Title</th><th class="border-top-0">Requested On</th><th class="border-top-0">Status</th><th class="text-end border-top-0">Action</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="fw-bold">1984 by George Orwell</span></td><td>Oct 20, 2026</td><td><span class="badge bg-warning text-dark">Pending</span></td><td class="text-end"><button class="btn btn-sm btn-outline-danger">Cancel</button></td></tr>
+                            <tr><td><span class="fw-bold">Dune by Frank Herbert</span></td><td>Oct 18, 2026</td><td><span class="badge bg-success">Approved</span></td><td class="text-end"><button class="btn btn-sm btn-outline-secondary" disabled>Cancel</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. Reserved Books Section -->
+            <section id="section-reserved-books" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Reserved Books</h3>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 d-flex gap-3 align-items-center border-start border-warning border-4 shadow-sm">
+                            <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-circle"><i class="fa-solid fa-bookmark fs-4"></i></div>
+                            <div><h5 class="fw-bold m-0">The Hobbit</h5><p class="text-muted small m-0">Reservation expires: <strong class="text-danger">Oct 24, 2026</strong></p></div>
+                            <button class="btn btn-sm btn-outline-danger ms-auto rounded-pill">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 d-flex gap-3 align-items-center border-start border-warning border-4 shadow-sm">
+                            <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-circle"><i class="fa-solid fa-bookmark fs-4"></i></div>
+                            <div><h5 class="fw-bold m-0">Sapiens</h5><p class="text-muted small m-0">Available for pickup until: <strong>Oct 23, 2026</strong></p></div>
+                            <button class="btn btn-sm btn-outline-danger ms-auto rounded-pill">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Borrowed Books Section -->
+            <section id="section-borrowed-books" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Currently Borrowed Books</h3>
+                <div class="premium-card p-4 border-0 shadow-sm table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead><tr class="text-muted small text-uppercase"><th class="border-top-0">Book Title</th><th class="border-top-0">Borrowed On</th><th class="border-top-0">Due Date</th><th class="border-top-0">Status</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="fw-bold">The Art of Design</span></td><td>Oct 11, 2026</td><td class="text-danger fw-bold">Oct 25, 2026</td><td><span class="badge bg-danger">Due Soon</span></td></tr>
+                            <tr><td><span class="fw-bold">Modern Architecture</span></td><td>Oct 15, 2026</td><td>Oct 29, 2026</td><td><span class="badge bg-success">Active</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 7. Due Dates Section -->
+            <section id="section-due-dates" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Due Dates & Reminders</h3>
+                <div class="alert alert-danger d-flex align-items-center gap-3 border-0 shadow-sm rounded-4 p-4 mb-4" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation fs-3"></i>
+                    <div><h5 class="alert-heading fw-bold mb-1">Overdue Warning!</h5><p class="mb-0 m-0 text-dark">You have 1 book that is due very soon. Please return or renew it to avoid late fees.</p></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 border-0 shadow-sm">
+                            <h5 class="fw-bold mb-3">Upcoming Due Dates</h5>
+                            <ul class="list-unstyled m-0">
+                                <li class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom"><span class="fw-bold">The Art of Design</span><span class="text-danger fw-bold">Oct 25 (2 days left)</span></li>
+                                <li class="d-flex justify-content-between align-items-center"><span class="fw-bold">Modern Architecture</span><span class="text-muted">Oct 29 (6 days left)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Renew Books Section -->
+            <section id="section-renew-books" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Renew Books</h3>
+                <p class="text-muted mb-4">You can renew a book once for an additional 14 days, provided it hasn't been reserved by another member.</p>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 d-flex justify-content-between align-items-center border-0 shadow-sm">
+                            <div><h5 class="fw-bold m-0">Modern Architecture</h5><p class="text-muted small m-0 mt-1">Due: Oct 29, 2026<br><span class="text-success"><i class="fa-solid fa-check-circle"></i> Eligible for 1 renewal</span></p></div>
+                            <button class="btn btn-premium rounded-pill">Renew (+14 days)</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 d-flex justify-content-between align-items-center border-0 shadow-sm bg-light">
+                            <div><h5 class="fw-bold m-0 text-muted">The Art of Design</h5><p class="text-muted small m-0 mt-1">Due: Oct 25, 2026<br><span class="text-danger"><i class="fa-solid fa-times-circle"></i> Reserved by another member</span></p></div>
+                            <button class="btn btn-secondary rounded-pill" disabled>Cannot Renew</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Reading History Section -->
+            <section id="section-reading-history" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Reading History</h3>
+                <div class="premium-card p-4 border-0 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                        <div><h5 class="fw-bold m-0">Clean Code</h5><p class="text-muted small m-0">Borrowed: Sep 01, 2026 • Returned: Sep 15, 2026</p></div>
+                        <span class="badge bg-success bg-opacity-10 text-success p-2 px-3 rounded-pill">Completed</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                        <div><h5 class="fw-bold m-0">Atomic Habits</h5><p class="text-muted small m-0">Borrowed: Jul 15, 2026 • Returned: Aug 02, 2026</p></div>
+                        <span class="badge bg-success bg-opacity-10 text-success p-2 px-3 rounded-pill">Completed</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div><h5 class="fw-bold m-0">To Kill a Mockingbird</h5><p class="text-muted small m-0">Borrowed: Jun 10, 2026 • Returned: Jun 24, 2026</p></div>
+                        <span class="badge bg-success bg-opacity-10 text-success p-2 px-3 rounded-pill">Completed</span>
+                    </div>
+                    <div class="text-center mt-4"><button class="btn btn-outline-premium rounded-pill">Load More</button></div>
+                </div>
+            </section>
+
+            <!-- 10. Membership Section -->
+            <section id="section-membership" class="dashboard-section">
+                <h3 class="fw-bold mb-4">My Membership</h3>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="premium-card p-5 text-center text-white border-0 shadow-lg rounded-4 position-relative overflow-hidden" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                            <i class="fa-solid fa-crown position-absolute opacity-10" style="font-size: 15rem; right: -50px; bottom: -50px;"></i>
+                            <div class="position-relative z-1">
+                                <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex p-4 mb-3">
+                                    <i class="fa-solid fa-crown fs-1 text-warning"></i>
+                                </div>
+                                <h2 class="fw-bold display-5 mb-2">Premium Plan</h2>
+                                <p class="opacity-75 fs-5 mb-4">Valid until December 31, 2026</p>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <button class="btn btn-light text-primary btn-lg rounded-pill fw-bold shadow-sm">Upgrade Plan</button>
+                                    <button class="btn btn-outline-light btn-lg rounded-pill">View Benefits</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. Notifications Section -->
+            <section id="section-notifications" class="dashboard-section">
+                <h3 class="fw-bold mb-4">All Notifications</h3>
+                <div class="premium-card p-0 overflow-hidden border-0 shadow-sm rounded-4">
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action p-4 border-0 border-bottom border-opacity-10 border-secondary bg-danger bg-opacity-10">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-clock text-danger mt-1 fs-5"></i>
+                                <div><h6 class="fw-bold mb-1">Book Due Tomorrow</h6><p class="text-muted small m-0">"The Art of Design" is due on Oct 25. Please return or renew it.</p></div>
+                                <small class="text-muted ms-auto whitespace-nowrap">2 hours ago</small>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action p-4 border-0 border-bottom border-opacity-10 border-secondary bg-light">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-check text-success mt-1 fs-5"></i>
+                                <div><h6 class="fw-bold mb-1">Reservation Available</h6><p class="text-muted small m-0">"Dune" is now available to pick up at the front desk.</p></div>
+                                <small class="text-muted ms-auto">1 day ago</small>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action p-4 border-0 bg-light">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-crown text-warning mt-1 fs-5"></i>
+                                <div><h6 class="fw-bold mb-1">Membership Renewed</h6><p class="text-muted small m-0">Your Premium Membership was successfully renewed.</p></div>
+                                <small class="text-muted ms-auto">1 week ago</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. Profile Section -->
+            <section id="section-profile" class="dashboard-section">
+                <h3 class="fw-bold mb-4">My Profile</h3>
+                <div class="premium-card p-4 p-md-5 border-0 shadow-sm">
+                    <div class="d-flex align-items-center gap-4 mb-5 border-bottom pb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="rounded-circle border border-3 border-secondary shadow-sm" style="width: 120px; height: 120px; object-fit: cover;">
+                        <div>
+                            <button class="btn btn-outline-premium rounded-pill mb-2"><i class="fa-solid fa-camera me-2"></i>Change Avatar</button>
+                            <p class="text-muted small m-0">JPG or PNG no larger than 2MB</p>
+                        </div>
+                    </div>
+                    <form class="row g-4">
+                        <div class="col-md-6"><label class="form-label fw-bold">First Name</label><input type="text" class="form-control bg-light border-0 py-2" value="Emily"></div>
+                        <div class="col-md-6"><label class="form-label fw-bold">Last Name</label><input type="text" class="form-control bg-light border-0 py-2" value="Johnson"></div>
+                        <div class="col-md-6"><label class="form-label fw-bold">Email Address</label><input type="email" class="form-control bg-light border-0 py-2" value="emily.j@example.com"></div>
+                        <div class="col-md-6"><label class="form-label fw-bold">Phone Number</label><input type="tel" class="form-control bg-light border-0 py-2" value="+1 (555) 123-4567"></div>
+                        <div class="col-12"><label class="form-label fw-bold">Address</label><textarea class="form-control bg-light border-0" rows="3">123 Bookworm Alley, Apt 4B, Readville, NY 10001</textarea></div>
+                        <div class="col-12 mt-4 text-end"><button type="submit" class="btn btn-premium px-5 py-2 rounded-pill">Save Changes</button></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 13. Settings Section -->
+            <section id="section-settings" class="dashboard-section">
+                <h3 class="fw-bold mb-4">Account Settings</h3>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 mb-4 border-0 shadow-sm h-100">
+                            <h5 class="fw-bold mb-4 border-bottom pb-3">Notification Preferences</h5>
+                            <div class="form-check form-switch mb-3 fs-5">
+                                <input class="form-check-input" type="checkbox" id="emailNotif" checked>
+                                <label class="form-check-label fs-6" for="emailNotif">Email Notifications</label>
+                            </div>
+                            <div class="form-check form-switch mb-3 fs-5">
+                                <input class="form-check-input" type="checkbox" id="smsNotif">
+                                <label class="form-check-label fs-6" for="smsNotif">SMS Alerts</label>
+                            </div>
+                            <div class="form-check form-switch fs-5">
+                                <input class="form-check-input" type="checkbox" id="newsletterNotif" checked>
+                                <label class="form-check-label fs-6" for="newsletterNotif">Marketing Newsletter</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 mb-4 border-0 shadow-sm h-100">
+                            <h5 class="fw-bold mb-4 border-bottom pb-3">Security & Privacy</h5>
+                            <button class="btn btn-outline-premium w-100 rounded-pill mb-3">Change Password</button>
+                            <button class="btn btn-outline-premium w-100 rounded-pill">Two-Factor Authentication</button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="premium-card p-4 border border-danger bg-danger bg-opacity-10 text-danger shadow-sm">
+                            <h5 class="fw-bold mb-2"><i class="fa-solid fa-triangle-exclamation me-2"></i> Danger Zone</h5>
+                            <p class="small mb-3">Once you delete your account, there is no going back. Please be certain.</p>
+                            <button class="btn btn-danger rounded-pill">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check auth status
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if(isLoggedIn === 'false' || !isLoggedIn) {
+                // Not logged in, redirect
+                // window.location.replace('login.html'); // Commented out for demo purposes, so it doesn't break if localStorage is empty
+            }
+
+            // SPA Navigation Logic
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a[href^="#"]');
+            const sections = document.querySelectorAll('.dashboard-section');
+            const pageTitle = document.querySelector('.topbar h4');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    e.preventDefault();
+                    
+                    // Update active state
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target section
+                    sections.forEach(sec => sec.classList.remove('active'));
+                    const targetSection = document.querySelector(targetId);
+                    if(targetSection) {
+                        targetSection.classList.add('active');
+                        // Update title
+                        const titleText = this.textContent.trim();
+                        if(titleText === 'Dashboard') {
+                            pageTitle.textContent = 'Welcome back, Emily!';
+                        } else {
+                            pageTitle.textContent = titleText;
+                        }
+                    }
+                    
+                    // Close sidebar on mobile
+                    if(window.innerWidth <= 991) {
+                        toggleSidebar();
+                    }
+                });
+            });
+
+            // RTL Toggle Logic
+            const rtlBtn = document.getElementById('rtl-toggle');
+            const htmlTag = document.documentElement;
+            
+            // Check saved preference
+            if(localStorage.getItem('layoutDir') === 'rtl') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+            }
+
+            if(rtlBtn) {
+                rtlBtn.addEventListener('click', function() {
+                    if(htmlTag.getAttribute('dir') === 'rtl') {
+                        htmlTag.removeAttribute('dir');
+                        htmlTag.setAttribute('lang', 'en');
+                        localStorage.setItem('layoutDir', 'ltr');
+                    } else {
+                        htmlTag.setAttribute('dir', 'rtl');
+                        htmlTag.setAttribute('lang', 'ar');
+                        localStorage.setItem('layoutDir', 'rtl');
+                    }
+                });
+            }
+
+            // Logout Logic
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    sessionStorage.clear();
+                    window.location.replace('index.html');
+                });
+            }
+            
+            // Fix Profile Dropdown Logout
+            const profileLogout = document.querySelector('.profile-dropdown .text-danger');
+            if(profileLogout) {
+                profileLogout.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    sessionStorage.clear();
+                    window.location.replace('index.html');
+                });
+            }
+
+            // Chart.js Initialization (Keep for Dashboard section)
+            const chartCanvas = document.getElementById('readingChart');
+            if (chartCanvas) {
+                const ctx = chartCanvas.getContext('2d');
+                const style = getComputedStyle(document.body);
+                const primaryColor = style.getPropertyValue('--primary-color').trim();
+                const secondaryColor = style.getPropertyValue('--secondary-color').trim();
+                const textColor = style.getPropertyValue('--text-primary').trim();
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                        datasets: [{
+                            label: 'Books Read',
+                            data: [2, 4, 3, 5, 2, 6, 4, 3, 5, 1],
+                            backgroundColor: secondaryColor,
+                            borderRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: textColor } },
+                            x: { grid: { display: false }, ticks: { color: textColor } }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        });
+
+        // Sidebar Toggle Logic (Keep original functions)
+        const toggleSidebarBtn = document.getElementById('toggleSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        
+        function toggleSidebar() {
+            if(sidebar) sidebar.classList.toggle('show');
+            if(sidebarOverlay) sidebarOverlay.classList.toggle('show');
+        }
+        
+        if(toggleSidebarBtn) toggleSidebarBtn.addEventListener('click', toggleSidebar);
+        if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
+        if(sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
+    </script>
+</body>
+</html>

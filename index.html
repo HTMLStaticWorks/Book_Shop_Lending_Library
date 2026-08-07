@@ -1,1 +1,443 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeafShelf | Read • Borrow • Discover</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <meta name="description"
+        content="LeafShelf is a premium neighborhood bookshop and lending library. Discover new arrivals, best sellers, and exclusive reading events.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-xl sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index-2.html">Home 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme"><i
+                            class="fa-solid fa-moon"></i></button>
+                    <button id="rtl-toggle" class="rtl-toggle" aria-label="Toggle RTL"><i
+                            class="fa-solid fa-right-left"></i></button>
+                    <a href="signup.html" class="btn btn-premium btn-sm">Signup</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Banner with Slideshow / Fade Up -->
+    <section class="hero-slider-section">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80"
+            alt="Bookstore Interior" class="hero-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 hero-content" data-aos="fade-up" data-aos-duration="1000">
+                    <h1>Where Every Page <br><span style="color: var(--accent-color);">Tells a Story</span></h1>
+                    <p>Discover our curated collection of books, immerse yourself in our serene reading lounges, and
+                        join a community that celebrates the joy of reading.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="books.html" class="btn btn-premium">Explore Collection</a>
+                        <a href="membership.html" class="btn btn-outline-premium text-white border-white">Join
+                            Library</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Floating decorative element -->
+        <div class="position-absolute bottom-0 end-0 p-5 d-none d-lg-block floating-element z-3">
+            <div class="glass-panel p-4 text-center text-white" style="border-radius: 50%;">
+                <i class="fa-solid fa-book-open fs-1 mb-2" style="color: var(--accent-color);"></i>
+                <h5 class="m-0 font-body fw-bold">10k+</h5>
+                <small>Books Available</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Featured Genres (Stagger Animation) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Explore Genres</h2>
+                <p>Dive into different worlds with our carefully curated genres. Whether you're looking for an escape or
+                    knowledge, we have it all.</p>
+            </div>
+            <div class="row g-4">
+                <!-- Genre 1 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="books.html" class="text-decoration-none">
+                        <div class="premium-card position-relative h-100">
+                            <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?auto=format&fit=crop&w=600&q=80"
+                                class="card-img-top" alt="Fiction" style="height: 250px; object-fit: cover;">
+                            <div class="card-body text-center">
+                                <h4>Fiction & Literature</h4>
+                                <p class="text-muted mb-0">Imaginative worlds and compelling stories.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Genre 2 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="books.html" class="text-decoration-none">
+                        <div class="premium-card position-relative h-100">
+                            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80"
+                                class="card-img-top" alt="Non-Fiction" style="height: 250px; object-fit: cover;">
+                            <div class="card-body text-center">
+                                <h4>Non-Fiction & Biographies</h4>
+                                <p class="text-muted mb-0">Real stories, history, and profound insights.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Genre 3 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="books.html" class="text-decoration-none">
+                        <div class="premium-card position-relative h-100">
+                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
+                                class="card-img-top" alt="Children" style="height: 250px; object-fit: cover;">
+                            <div class="card-body text-center">
+                                <h4>Children & Young Adult</h4>
+                                <p class="text-muted mb-0">Magical adventures for the young minds.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Best Sellers (Tilt Hover effect in CSS natively through transform) -->
+    <section class="section-padding" style="background-color: var(--card-bg);">
+        <div class="container">
+            <div class="section-title" data-aos="zoom-in">
+                <h2>Trending Best Sellers</h2>
+                <p>Our community's current favorites. These titles are flying off the shelves!</p>
+            </div>
+            <div class="row g-4">
+                <!-- Book 1 -->
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="100">
+                    <div class="premium-card text-center p-3 h-100 border-0 shadow-sm"
+                        style="background: var(--bg-color);">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=400&q=80"
+                            alt="Book 1" class="img-fluid rounded mb-3"
+                            style="height: 280px; object-fit: cover; box-shadow: var(--shadow-sm);">
+                        <h5>The Art of Design</h5>
+                        <p class="text-muted small mb-2">Sarah Jenkins</p>
+                        <div class="d-flex justify-content-center gap-1 mb-3 text-warning">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <a href="books.html" class="btn btn-outline-premium w-100">Borrow Now</a>
+                    </div>
+                </div>
+                <!-- Book 2 -->
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="200">
+                    <div class="premium-card text-center p-3 h-100 border-0 shadow-sm"
+                        style="background: var(--bg-color);">
+                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=400&q=80"
+                            alt="Book 2" class="img-fluid rounded mb-3"
+                            style="height: 280px; object-fit: cover; box-shadow: var(--shadow-sm);">
+                        <h5>Modern Architecture</h5>
+                        <p class="text-muted small mb-2">David Miller</p>
+                        <div class="d-flex justify-content-center gap-1 mb-3 text-warning">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <a href="books.html" class="btn btn-outline-premium w-100">Borrow Now</a>
+                    </div>
+                </div>
+                <!-- Book 3 -->
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="300">
+                    <div class="premium-card text-center p-3 h-100 border-0 shadow-sm"
+                        style="background: var(--bg-color);">
+                        <img src="https://images.pexels.com/photos/3847626/pexels-photo-3847626.jpeg" alt="Book 3"
+                            class="img-fluid rounded mb-3"
+                            style="height: 280px; object-fit: cover; box-shadow: var(--shadow-sm);">
+                        <h5>Creative Minds</h5>
+                        <p class="text-muted small mb-2">Emma Watson</p>
+                        <div class="d-flex justify-content-center gap-1 mb-3 text-warning">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-regular fa-star"></i>
+                        </div>
+                        <a href="books.html" class="btn btn-outline-premium w-100">Borrow Now</a>
+                    </div>
+                </div>
+                <!-- Book 4 -->
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="400">
+                    <div class="premium-card text-center p-3 h-100 border-0 shadow-sm"
+                        style="background: var(--bg-color);">
+                        <img src="https://images.unsplash.com/photo-1618666012174-83b441c0bc76?auto=format&fit=crop&w=400&q=80"
+                            alt="Book 4" class="img-fluid rounded mb-3"
+                            style="height: 280px; object-fit: cover; box-shadow: var(--shadow-sm);">
+                        <h5>Abstract Thinking</h5>
+                        <p class="text-muted small mb-2">Robert Fox</p>
+                        <div class="d-flex justify-content-center gap-1 mb-3 text-warning">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <a href="books.html" class="btn btn-outline-premium w-100">Borrow Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="books.html" class="btn btn-premium">View All Books</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Membership Benefits (Slide Left/Right) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=800&q=80"
+                            alt="Membership" class="img-fluid rounded-4 shadow-lg">
+                        <div
+                            class="glass-panel position-absolute bottom-0 end-0 p-4 m-3 d-flex align-items-center gap-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 50px; height: 50px; background-color: var(--primary-color) !important;">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="m-0 fw-bold">Premium</h5>
+                                <small class="text-muted">Access</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="mb-4"
+                        style="font-family: var(--font-heading); color: var(--primary-color); font-size: 2.5rem;">Join
+                        the LeafShelf Membership</h2>
+                    <p class="text-muted mb-4">Unlock a world of reading privileges. As a LeafShelf member, you get
+                        priority access to new arrivals, extended borrowing periods, and exclusive invites to author
+                        meet-and-greets.</p>
+
+                    <ul class="list-unstyled mb-5">
+                        <li class="mb-3 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-book-bookmark text-success fs-4"
+                                style="color: var(--secondary-color) !important;"></i>
+                            <span class="fs-5">Borrow up to 10 books simultaneously</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-clock-rotate-left text-success fs-4"
+                                style="color: var(--secondary-color) !important;"></i>
+                            <span class="fs-5">30-day borrowing period with free renewals</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-ticket text-success fs-4"
+                                style="color: var(--secondary-color) !important;"></i>
+                            <span class="fs-5">Free entry to reading clubs and workshops</span>
+                        </li>
+                    </ul>
+                    <a href="membership.html" class="btn btn-premium">View Membership Plans</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Upcoming Reading Events -->
+    <section class="section-padding" style="background-color: var(--card-bg);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Upcoming Events</h2>
+                <p>Join our community gatherings. From book clubs to author readings, there's always something happening
+                    at LeafShelf.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="premium-card d-flex flex-column flex-md-row h-100">
+                        <img src="https://images.unsplash.com/photo-1577985051167-0d49eec21977?auto=format&fit=crop&w=600&q=80"
+                            alt="Event 1" class="img-fluid" style="width: 100%; max-width: 250px; object-fit: cover;">
+                        <div class="p-4 d-flex flex-column justify-content-center">
+                            <div class="text-uppercase mb-2 fw-bold"
+                                style="color: var(--secondary-color); font-size: 0.85rem;">Oct 15 • Reading Lounge</div>
+                            <h4 class="mb-3">Monthly Fiction Book Club</h4>
+                            <p class="text-muted mb-4">Join us as we discuss this month's pick: "The Midnight Library".
+                                Coffee and snacks provided.</p>
+                            <a href="events.html" class="btn btn-outline-premium align-self-start mt-auto">Register
+                                Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="premium-card d-flex flex-column flex-md-row h-100">
+                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80"
+                            alt="Event 2" class="img-fluid" style="width: 100%; max-width: 250px; object-fit: cover;">
+                        <div class="p-4 d-flex flex-column justify-content-center">
+                            <div class="text-uppercase mb-2 fw-bold"
+                                style="color: var(--secondary-color); font-size: 0.85rem;">Oct 22 • Main Hall</div>
+                            <h4 class="mb-3">Author Spotlight: Jane Doe</h4>
+                            <p class="text-muted mb-4">A special evening with award-winning author Jane Doe. Book
+                                signing follows the Q&A session.</p>
+                            <a href="events.html" class="btn btn-outline-premium align-self-start mt-auto">Register
+                                Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Testimonials + CTA (Scale Animation) -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <div class="section-title" data-aos="zoom-in">
+                <h2>What Our Readers Say</h2>
+            </div>
+            <div class="row justify-content-center g-4 mb-5">
+                <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="premium-card p-4 text-center h-100">
+                        <i class="fa-solid fa-quote-left fs-1 mb-3"
+                            style="color: var(--accent-color); opacity: 0.5;"></i>
+                        <p class="fst-italic mb-4">"LeafShelf is my sanctuary. The ambiance is perfect for reading, and
+                            their collection is absolutely unmatched in the city."</p>
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User 1"
+                            class="rounded-circle mb-2"
+                            style="width: 60px; height: 60px; border: 2px solid var(--secondary-color);">
+                        <h6 class="fw-bold m-0">Emily R.</h6>
+                        <small class="text-muted">Premium Member</small>
+                    </div>
+                </div>
+                <div class="col-md-5" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="premium-card p-4 text-center h-100">
+                        <i class="fa-solid fa-quote-left fs-1 mb-3"
+                            style="color: var(--accent-color); opacity: 0.5;"></i>
+                        <p class="fst-italic mb-4">"I love the digital dashboard! It's so easy to reserve books and
+                            track my reading history. A truly modern library experience."</p>
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User 2"
+                            class="rounded-circle mb-2"
+                            style="width: 60px; height: 60px; border: 2px solid var(--secondary-color);">
+                        <h6 class="fw-bold m-0">Michael T.</h6>
+                        <small class="text-muted">Standard Member</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter CTA -->
+            <div class="premium-card p-5 mt-5 glass-panel"
+                style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border: none;"
+                data-aos="zoom-in-up">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center text-white">
+                        <h3 class="mb-3" style="color: #fff;">Stay Updated with LeafShelf</h3>
+                        <p class="mb-4 text-white-50">Subscribe to our newsletter for new arrivals, reading tips, and
+                            exclusive event invites.</p>
+                        <form class="d-flex gap-2 justify-content-center max-w-md mx-auto" style="max-width: 500px;">
+                            <input type="email" class="form-control rounded-pill px-4" placeholder="Your email address"
+                                required>
+                            <button type="submit" class="btn btn-premium"
+                                style="background: var(--bg-color); color: var(--primary-color); border-color: var(--bg-color);">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a class="navbar-brand mb-3 d-inline-block" href="index.html">
+                        <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+                    </a>
+                    <p class="text-muted mb-4 pe-lg-4">Your neighborhood sanctuary for books, knowledge, and community.
+                        Discover your next great read with us.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="books.html">Fiction</a></li>
+                        <li><a href="books.html">Non-Fiction</a></li>
+                        <li><a href="books.html">Children's Books</a></li>
+                        <li><a href="books.html">Academic</a></li>
+                        <li><a href="books.html">Self-Help</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-location-dot mt-1" style="color: var(--secondary-color);"></i>
+                            <span>123 Reading Lane, Book District, NY 10001</span>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-phone mt-1" style="color: var(--secondary-color);"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="d-flex gap-3 text-muted">
+                            <i class="fa-solid fa-envelope mt-1" style="color: var(--secondary-color);"></i>
+                            <span>hello@leafshelf.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2026 LeafShelf Library. All Rights Reserved.</p>
+                <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

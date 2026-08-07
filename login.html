@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | LeafShelf</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1507738978512-35798112892c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+            padding: 40px 20px;
+            position: relative;
+        }
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 54, 38, 0.7); /* Primary color overlay */
+        }
+        [data-theme="dark"] .auth-container::before {
+            background: rgba(18, 18, 18, 0.8);
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 500px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            z-index: 10;
+            box-shadow: var(--shadow-lg);
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            transition: all var(--transition-fast);
+        }
+        .social-btn:hover {
+            background: var(--bg-color);
+            border-color: var(--secondary-color);
+        }
+        .auth-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+        .auth-controls button {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .auth-controls button:hover {
+            background: rgba(255,255,255,0.4);
+        }
+        @media (max-width: 768px) {
+            .auth-controls {
+                top: 15px;
+                right: 15px;
+            }
+            .auth-container {
+                padding-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Theme/RTL Controls on top right -->
+    <div class="auth-controls">
+        <button id="theme-toggle" aria-label="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+        <button id="rtl-toggle" aria-label="Toggle RTL"><i class="fa-solid fa-right-left"></i></button>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card" data-aos="zoom-in" data-aos-duration="800">
+            <div class="text-center mb-4">
+                <a href="index.html" class="text-decoration-none d-inline-block mb-3">
+                    <h2 class="fw-bold m-0" style="color: var(--primary-color); font-family: var(--font-heading);">
+                        <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+                    </h2>
+                </a>
+                <p class="text-muted">Welcome back! Please enter your details.</p>
+            </div>
+            
+            <form action="dashboard.html">
+                <div class="mb-3">
+                    <label class="form-label fw-bold small">Email Address</label>
+                    <input type="email" class="form-control form-control-lg bg-transparent" placeholder="Enter your email" required style="border-color: var(--border-color); color: var(--text-primary);">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold small">Password</label>
+                    <div class="position-relative">
+                        <input type="password" class="form-control form-control-lg bg-transparent" placeholder="••••••••" required style="border-color: var(--border-color); color: var(--text-primary);">
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label text-muted small" for="rememberMe">
+                            Remember me
+                        </label>
+                    </div>
+                    <a href="#" class="text-decoration-none small fw-bold" style="color: var(--secondary-color);">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-premium w-100 mb-4">Sign In</button>
+            </form>
+            
+            <div class="position-relative text-center mb-4">
+                <hr class="text-muted">
+                <span class="position-absolute top-50 start-50 translate-middle px-3 text-muted small" style="background: var(--card-bg);">OR</span>
+            </div>
+            
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <button class="social-btn" aria-label="Log in with Google">
+                    <i class="fa-brands fa-google text-danger"></i>
+                </button>
+                <button class="social-btn" aria-label="Log in with Facebook">
+                    <i class="fa-brands fa-facebook text-primary"></i>
+                </button>
+                <button class="social-btn" aria-label="Log in with Apple">
+                    <i class="fa-brands fa-apple"></i>
+                </button>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-muted small m-0">Don't have an account? <a href="signup.html" class="fw-bold text-decoration-none" style="color: var(--primary-color);">Sign up</a></p>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

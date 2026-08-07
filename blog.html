@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Insights | LeafShelf</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-xl sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index-2.html">Home 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    <button id="rtl-toggle" class="rtl-toggle"><i class="fa-solid fa-right-left"></i></button>
+                    <a href="signup.html" class="btn btn-premium btn-sm">Signup</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero -->
+    <section class="hero-slider-section" style="height: 50vh; min-height: 400px; display: flex; align-items: center;">
+        <img src="https://images.pexels.com/photos/29013605/pexels-photo-29013605.jpeg" alt="Blog Hero" class="hero-bg"
+            style="animation: none;">
+        <div class="container position-relative z-2 text-center text-white" data-aos="zoom-in">
+            <h1 class="display-4 fw-bold text-white mb-3">The LeafShelf Journal</h1>
+            <p class="lead text-white-50 max-w-lg mx-auto" style="max-width: 600px;">Thoughts, reviews, and literary
+                musings from our curators.</p>
+        </div>
+    </section>
+
+    <!-- Featured Categories (Reading Tips, Spotlights, Reviews) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-4">
+                <!-- 2. Reading Tips -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="premium-card h-100 group border-0 shadow-sm">
+                        <div class="overflow-hidden" style="height: 250px;">
+                            <img src="https://images.unsplash.com/photo-1513001900722-370f803f498d?auto=format&fit=crop&w=600&q=80"
+                                alt="Reading Tips" class="img-fluid w-100 h-100"
+                                style="object-fit: cover; transition: transform 0.5s ease;">
+                        </div>
+                        <div class="card-body p-4 position-relative z-1"
+                            style="margin-top: -30px; background: var(--card-bg); border-radius: 16px 16px 0 0;">
+                            <span class="badge bg-primary mb-2"
+                                style="background-color: var(--secondary-color) !important;">Reading Tips</span>
+                            <h4 class="fw-bold mb-3">How to Read 50 Books a Year</h4>
+                            <p class="text-muted small mb-4">Practical strategies for building a consistent reading
+                                habit without feeling overwhelmed.</p>
+                            <a href="#" class="text-decoration-none fw-bold" style="color: var(--primary-color);">Read
+                                Article <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3. Author Spotlights -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="premium-card h-100 group border-0 shadow-sm">
+                        <div class="overflow-hidden" style="height: 250px;">
+                            <img src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=600&q=80"
+                                alt="Author Spotlight" class="img-fluid w-100 h-100"
+                                style="object-fit: cover; transition: transform 0.5s ease;">
+                        </div>
+                        <div class="card-body p-4 position-relative z-1"
+                            style="margin-top: -30px; background: var(--card-bg); border-radius: 16px 16px 0 0;">
+                            <span class="badge bg-primary mb-2"
+                                style="background-color: var(--accent-color) !important; color: var(--primary-color) !important;">Author
+                                Spotlight</span>
+                            <h4 class="fw-bold mb-3">A Conversation with Haruki Murakami</h4>
+                            <p class="text-muted small mb-4">We sit down with the legendary author to discuss
+                                surrealism, jazz, and his latest novel.</p>
+                            <a href="#" class="text-decoration-none fw-bold" style="color: var(--primary-color);">Read
+                                Article <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4. Book Reviews -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="premium-card h-100 group border-0 shadow-sm">
+                        <div class="overflow-hidden" style="height: 250px;">
+                            <img src="https://images.pexels.com/photos/37261881/pexels-photo-37261881.jpeg"
+                                alt="Book Reviews" class="img-fluid w-100 h-100"
+                                style="object-fit: cover; transition: transform 0.5s ease;">
+                        </div>
+                        <div class="card-body p-4 position-relative z-1"
+                            style="margin-top: -30px; background: var(--card-bg); border-radius: 16px 16px 0 0;">
+                            <span class="badge bg-primary mb-2"
+                                style="background-color: var(--primary-color) !important;">Book Review</span>
+                            <h4 class="fw-bold mb-3">Review: The Goldfinch</h4>
+                            <p class="text-muted small mb-4">Our head curator breaks down Donna Tartt's Pulitzer
+                                Prize-winning masterpiece.</p>
+                            <a href="#" class="text-decoration-none fw-bold" style="color: var(--primary-color);">Read
+                                Article <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Latest Articles (List view) -->
+    <section class="section-padding" style="background-color: var(--card-bg);">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="d-flex justify-content-between align-items-center mb-5" data-aos="fade-up">
+                        <h2 class="m-0" style="color: var(--primary-color);">Latest Articles</h2>
+                    </div>
+
+                    <!-- Article 1 -->
+                    <div class="card border-0 bg-transparent mb-5" data-aos="fade-up">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=600&q=80"
+                                    class="img-fluid rounded-4 shadow-sm" alt="Article 1"
+                                    style="height: 200px; width: 100%; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body py-md-0 px-md-4">
+                                    <p class="text-muted small mb-2">October 24, 2026 • 5 min read</p>
+                                    <h4 class="fw-bold mb-3"><a href="#" class="text-decoration-none"
+                                            style="color: var(--text-primary);">The Rise of Cozy Fantasy</a></h4>
+                                    <p class="text-muted mb-3">Why readers are gravitating towards low-stakes fantasy
+                                        novels that feel like a warm hug.</p>
+                                    <a href="#" class="btn btn-sm btn-outline-premium rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="card border-0 bg-transparent mb-5" data-aos="fade-up">
+                        <div class="row g-0 align-items-center flex-md-row-reverse">
+                            <div class="col-md-4">
+                                <img src="https://images.unsplash.com/photo-1518378772390-c116d91c107f?auto=format&fit=crop&w=600&q=80"
+                                    class="img-fluid rounded-4 shadow-sm" alt="Article 2"
+                                    style="height: 200px; width: 100%; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body py-md-0 px-md-4">
+                                    <p class="text-muted small mb-2">October 20, 2026 • 8 min read</p>
+                                    <h4 class="fw-bold mb-3"><a href="#" class="text-decoration-none"
+                                            style="color: var(--text-primary);">The Art of Bookbinding</a></h4>
+                                    <p class="text-muted mb-3">An exploration into the traditional craft of creating
+                                        physical books and why it still matters today.</p>
+                                    <a href="#" class="btn btn-sm btn-outline-premium rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="card border-0 bg-transparent" data-aos="fade-up">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-4">
+                                <img src="https://images.pexels.com/photos/33719383/pexels-photo-33719383.jpeg"
+                                    class="img-fluid rounded-4 shadow-sm" alt="Article 3"
+                                    style="height: 200px; width: 100%; object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body py-md-0 px-md-4">
+                                    <p class="text-muted small mb-2">October 15, 2026 • 4 min read</p>
+                                    <h4 class="fw-bold mb-3"><a href="#" class="text-decoration-none"
+                                            style="color: var(--text-primary);">Best Parks for Outdoor Reading</a></h4>
+                                    <p class="text-muted mb-3">We compiled a list of the most serene and comfortable
+                                        parks in the city to enjoy your latest borrow.</p>
+                                    <a href="#" class="btn btn-sm btn-outline-premium rounded-pill">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 text-center text-md-start" data-aos="fade-up">
+                        <button class="btn btn-premium">Load More Articles</button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="premium-card p-4 mb-4">
+                        <h4 class="mb-4">Search Blog</h4>
+                        <form class="d-flex">
+                            <input type="text" class="form-control me-2" placeholder="Search articles...">
+                            <button class="btn btn-premium" type="button"><i class="fa-solid fa-search"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="premium-card p-4 mb-4">
+                        <h4 class="mb-4">Categories</h4>
+                        <ul class="list-unstyled m-0">
+                            <li class="mb-2 d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none text-muted">Book Reviews</a>
+                                <span class="badge rounded-pill bg-light text-dark border">14</span>
+                            </li>
+                            <li class="mb-2 d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none text-muted">Author Interviews</a>
+                                <span class="badge rounded-pill bg-light text-dark border">8</span>
+                            </li>
+                            <li class="mb-2 d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none text-muted">Reading Tips</a>
+                                <span class="badge rounded-pill bg-light text-dark border">22</span>
+                            </li>
+                            <li class="mb-2 d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none text-muted">Literary News</a>
+                                <span class="badge rounded-pill bg-light text-dark border">11</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="premium-card p-4 text-center text-white"
+                        style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border: none;">
+                        <h4 class="text-white mb-3">Join Our Newsletter</h4>
+                        <p class="text-white-50 small mb-4">Get the latest articles directly in your inbox.</p>
+                        <form>
+                            <input type="email" class="form-control mb-3" placeholder="Email Address">
+                            <button class="btn w-100"
+                                style="background: var(--bg-color); color: var(--primary-color);">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a class="navbar-brand mb-3 d-inline-block" href="index.html">
+                        <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+                    </a>
+                    <p class="text-muted mb-4 pe-lg-4">Your neighborhood sanctuary for books, knowledge, and community.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="books.html">Fiction</a></li>
+                        <li><a href="books.html">Non-Fiction</a></li>
+                        <li><a href="books.html">Children's Books</a></li>
+                        <li><a href="books.html">Academic</a></li>
+                        <li><a href="books.html">Self-Help</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-location-dot mt-1" style="color: var(--secondary-color);"></i>
+                            <span>123 Reading Lane, Book District, NY 10001</span>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-phone mt-1" style="color: var(--secondary-color);"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="d-flex gap-3 text-muted">
+                            <i class="fa-solid fa-envelope mt-1" style="color: var(--secondary-color);"></i>
+                            <span>hello@leafshelf.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2026 LeafShelf Library. All Rights Reserved.</p>
+                <button id="backToTop" class="back-to-top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

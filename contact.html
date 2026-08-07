@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | LeafShelf</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-xl sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index-2.html">Home 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="membership.html">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    <button id="rtl-toggle" class="rtl-toggle"><i class="fa-solid fa-right-left"></i></button>
+                    <a href="signup.html" class="btn btn-premium btn-sm">Signup</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero -->
+    <section class="hero-slider-section" style="height: 50vh; min-height: 400px; display: flex; align-items: center;">
+        <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1920&q=80" alt="Contact Hero" class="hero-bg" style="animation: none;">
+        <div class="container position-relative z-2 text-center text-white" data-aos="zoom-in">
+            <h1 class="display-4 fw-bold text-white mb-3">Get In Touch</h1>
+            <p class="lead text-white-50 max-w-lg mx-auto" style="max-width: 600px;">Have a question or a book recommendation? We'd love to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- 2. Contact Information Cards -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="premium-card p-5 text-center h-100 shadow-lg border-0">
+                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 70px; height: 70px; background-color: var(--bg-color) !important;">
+                            <i class="fa-solid fa-location-dot fs-3" style="color: var(--secondary-color);"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Our Location</h4>
+                        <p class="text-muted mb-0">123 Reading Lane,<br>Book District, NY 10001</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="premium-card p-5 text-center h-100 shadow-lg border-0">
+                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 70px; height: 70px; background-color: var(--bg-color) !important;">
+                            <i class="fa-solid fa-phone fs-3" style="color: var(--secondary-color);"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Call Us</h4>
+                        <p class="text-muted mb-0">+1 (555) 123-4567<br>+1 (555) 987-6543</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="premium-card p-5 text-center h-100 shadow-lg border-0">
+                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 70px; height: 70px; background-color: var(--bg-color) !important;">
+                            <i class="fa-solid fa-envelope fs-3" style="color: var(--secondary-color);"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Email Us</h4>
+                        <p class="text-muted mb-0">hello@leafshelf.com<br>support@leafshelf.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Contact Form & Store Timings -->
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="row g-5">
+                <!-- 5. Contact Form -->
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="section-title text-start mb-4">
+                        <h2>Send a Message</h2>
+                        <p>Fill out the form below and our team will get back to you shortly.</p>
+                    </div>
+                    <form class="premium-card p-4 p-md-5">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Full Name</label>
+                                <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="John Doe" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Email Address</label>
+                                <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="john@example.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Subject</label>
+                                <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="How can we help you?" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Message</label>
+                                <textarea class="form-control bg-light border-0" rows="5" placeholder="Write your message here..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-premium w-100 btn-lg">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- 4. Store Timings -->
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="section-title text-start mb-4">
+                        <h2>Store Timings</h2>
+                        <p>Plan your visit to LeafShelf.</p>
+                    </div>
+                    <div class="premium-card p-4 p-md-5" style="background-color: var(--primary-color);">
+                        <ul class="list-unstyled m-0">
+                            <li class="d-flex justify-content-between text-white border-bottom border-light border-opacity-25 pb-3 mb-3">
+                                <span>Monday</span>
+                                <span class="fw-bold">9:00 AM - 8:00 PM</span>
+                            </li>
+                            <li class="d-flex justify-content-between text-white border-bottom border-light border-opacity-25 pb-3 mb-3">
+                                <span>Tuesday</span>
+                                <span class="fw-bold">9:00 AM - 8:00 PM</span>
+                            </li>
+                            <li class="d-flex justify-content-between text-white border-bottom border-light border-opacity-25 pb-3 mb-3">
+                                <span>Wednesday</span>
+                                <span class="fw-bold">9:00 AM - 8:00 PM</span>
+                            </li>
+                            <li class="d-flex justify-content-between text-white border-bottom border-light border-opacity-25 pb-3 mb-3">
+                                <span>Thursday</span>
+                                <span class="fw-bold">9:00 AM - 8:00 PM</span>
+                            </li>
+                            <li class="d-flex justify-content-between text-white border-bottom border-light border-opacity-25 pb-3 mb-3">
+                                <span>Friday</span>
+                                <span class="fw-bold">9:00 AM - 9:00 PM</span>
+                            </li>
+                            <li class="d-flex justify-content-between text-white border-bottom border-light border-opacity-25 pb-3 mb-3">
+                                <span style="color: var(--accent-color);">Saturday</span>
+                                <span class="fw-bold" style="color: var(--accent-color);">10:00 AM - 9:00 PM</span>
+                            </li>
+                            <li class="d-flex justify-content-between text-white m-0">
+                                <span style="color: var(--accent-color);">Sunday</span>
+                                <span class="fw-bold" style="color: var(--accent-color);">10:00 AM - 6:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4 d-flex gap-3 justify-content-start" data-aos="fade-up" data-aos-delay="100">
+                        <a href="#" class="btn btn-outline-premium rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-premium rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-premium rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-premium rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Google Map -->
+    <section class="mb-0" data-aos="fade-in">
+        <div style="height: 400px; width: 100%;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2152862024765!2d-73.98801912384666!3d40.75727197138549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a class="navbar-brand mb-3 d-inline-block" href="index.html">
+                        <img src="images/logo-icon.svg" alt="LeafShelf Logo" class="brand-icon"> LeafShelf
+                    </a>
+                    <p class="text-muted mb-4 pe-lg-4">Your neighborhood sanctuary for books, knowledge, and community.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-widget">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="books.html">Fiction</a></li>
+                        <li><a href="books.html">Non-Fiction</a></li>
+                        <li><a href="books.html">Children's Books</a></li>
+                        <li><a href="books.html">Academic</a></li>
+                        <li><a href="books.html">Self-Help</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-links">
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-location-dot mt-1" style="color: var(--secondary-color);"></i>
+                            <span>123 Reading Lane, Book District, NY 10001</span>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 text-muted">
+                            <i class="fa-solid fa-phone mt-1" style="color: var(--secondary-color);"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="d-flex gap-3 text-muted">
+                            <i class="fa-solid fa-envelope mt-1" style="color: var(--secondary-color);"></i>
+                            <span>hello@leafshelf.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2026 LeafShelf Library. All Rights Reserved.</p>
+                <button id="backToTop" class="back-to-top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
