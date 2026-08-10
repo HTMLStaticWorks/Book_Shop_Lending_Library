@@ -61,7 +61,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 hero-content" data-aos="fade-up" data-aos-duration="1000">
-                    <h1>Where Every Page <br><span style="color: var(--primary-color);">Tells a Story</span></h1>
+                    <h1>Where Every Page <br><span style="color: #E6D5B8;">Tells a Story</span></h1>
                     <p>Discover our curated collection of books, immerse yourself in our serene reading lounges, and
                         join a community that celebrates the joy of reading.</p>
                     <div class="d-flex gap-3 flex-wrap">
@@ -281,7 +281,7 @@
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="premium-card d-flex flex-column flex-md-row h-100">
                         <img src="https://images.unsplash.com/photo-1577985051167-0d49eec21977?auto=format&fit=crop&w=600&q=80"
-                            alt="Event 1" class="img-fluid" style="width: 100%; max-width: 250px; object-fit: cover;">
+                            alt="Event 1" class="img-fluid event-card-img">
                         <div class="p-4 d-flex flex-column justify-content-center">
                             <div class="text-uppercase mb-2 fw-bold"
                                 style="color: var(--secondary-color); font-size: 0.85rem;">Oct 15 • Reading Lounge</div>
@@ -296,7 +296,7 @@
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="premium-card d-flex flex-column flex-md-row h-100">
                         <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80"
-                            alt="Event 2" class="img-fluid" style="width: 100%; max-width: 250px; object-fit: cover;">
+                            alt="Event 2" class="img-fluid event-card-img">
                         <div class="p-4 d-flex flex-column justify-content-center">
                             <div class="text-uppercase mb-2 fw-bold"
                                 style="color: var(--secondary-color); font-size: 0.85rem;">Oct 22 • Main Hall</div>
@@ -320,7 +320,7 @@
             </div>
             <div class="row justify-content-center g-4 mb-5">
                 <div class="col-md-5" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="premium-card p-4 text-center h-100">
+                    <div class="premium-card p-4 text-center h-100 d-flex flex-column">
                         <i class="fa-solid fa-quote-left fs-1 mb-3"
                             style="color: var(--accent-color); opacity: 0.5;"></i>
                         <div class="mb-3 text-warning">
@@ -330,17 +330,19 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="fst-italic mb-4">"LeafShelf is my sanctuary. The ambiance is perfect for reading, and
-                            their collection is absolutely unmatched in the city."</p>
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User 1"
-                            class="rounded-circle mb-2"
-                            style="width: 60px; height: 60px; border: 2px solid var(--secondary-color);">
-                        <h6 class="fw-bold m-0">Emily R.</h6>
-                        <small class="text-muted">Premium Member</small>
+                        <p class="fst-italic mb-4 flex-grow-1">"LeafShelf is my sanctuary. The ambiance is perfect for
+                            reading,their collection is absolutely unmatched in the city."</p>
+                        <div>
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User 1"
+                                class="rounded-circle mb-2"
+                                style="width: 60px; height: 60px; border: 2px solid var(--secondary-color);">
+                            <h6 class="fw-bold m-0">Emily R.</h6>
+                            <small class="text-muted">Premium Member</small>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-5" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="premium-card p-4 text-center h-100">
+                    <div class="premium-card p-4 text-center h-100 d-flex flex-column">
                         <i class="fa-solid fa-quote-left fs-1 mb-3"
                             style="color: var(--accent-color); opacity: 0.5;"></i>
                         <div class="mb-3 text-warning">
@@ -350,13 +352,16 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="fst-italic mb-4">"I love the digital dashboard! It's so easy to reserve books and
+                        <p class="fst-italic mb-4 flex-grow-1">"I love the digital dashboard! It's so easy to reserve
+                            books and
                             track my reading history. A truly modern library experience."</p>
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User 2"
-                            class="rounded-circle mb-2"
-                            style="width: 60px; height: 60px; border: 2px solid var(--secondary-color);">
-                        <h6 class="fw-bold m-0">Michael T.</h6>
-                        <small class="text-muted">Standard Member</small>
+                        <div>
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User 2"
+                                class="rounded-circle mb-2"
+                                style="width: 60px; height: 60px; border: 2px solid var(--secondary-color);">
+                            <h6 class="fw-bold m-0">Michael T.</h6>
+                            <small class="text-muted">Standard Member</small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -368,7 +373,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 text-center">
                         <h3 class="mb-3" style="color: var(--bg-color);">Stay Updated with LeafShelf</h3>
-                        <p class="mb-4" style="color: var(--bg-color); opacity: 0.8;">Subscribe to our newsletter for new arrivals, reading tips, and
+                        <p class="mb-4" style="color: var(--bg-color); opacity: 0.8;">Subscribe to our newsletter for
+                            new arrivals, reading tips, and
                             exclusive event invites.</p>
                         <form class="d-flex gap-2 justify-content-center max-w-md mx-auto" style="max-width: 500px;">
                             <input type="email" class="form-control rounded-pill px-4" placeholder="Your email address"

@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (entry.isIntersecting) {
                     const target = entry.target;
                     const finalValue = parseInt(target.getAttribute('data-count'));
+                    const suffix = target.getAttribute('data-suffix') || '';
                     const duration = 2000;
                     const step = finalValue / (duration / 16);
                     let current = 0;
@@ -132,10 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const updateCounter = () => {
                         current += step;
                         if (current < finalValue) {
-                            target.innerText = Math.ceil(current);
+                            target.innerText = Math.ceil(current) + suffix;
                             requestAnimationFrame(updateCounter);
                         } else {
-                            target.innerText = finalValue;
+                            target.innerText = finalValue + suffix;
                         }
                     };
                     updateCounter();
