@@ -102,6 +102,10 @@ img, video, canvas {
 [data-theme="dark"] .form-select {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
 }
+[data-theme="dark"] select option {
+  background-color: #121212 !important; /* Force solid dark background for options */
+  color: #F9F6F0 !important; /* Force light text */
+}
 [data-theme="dark"] .form-control::placeholder {
   color: var(--text-secondary) !important;
 }
@@ -845,4 +849,12 @@ b, strong, .fw-bold {
 
 
 
-
+/* Newsletter Input Contrast Fix */
+.newsletter-input {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+.newsletter-input::placeholder {
+  color: var(--text-secondary) !important;
+}

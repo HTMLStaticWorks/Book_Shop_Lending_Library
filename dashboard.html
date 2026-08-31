@@ -13,6 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
+        /* Force dark mode select options to have solid background */
+        [data-theme="dark"] select option {
+            background-color: #121212 !important;
+            color: #F9F6F0 !important;
+        }
+        
         :root {
             --sidebar-width: 280px;
         }
@@ -267,9 +273,9 @@
             </div>
             
             <div class="topbar-right">
-                <button id="rtl-toggle" class="btn text-muted" title="Toggle RTL/LTR"><i class="fa-solid fa-right-left"></i></button>
-                <button id="theme-toggle" class="btn text-muted"><i class="fa-solid fa-moon"></i></button>
-                <button class="notification-btn">
+                <button id="rtl-toggle" class="rtl-toggle fs-4" title="Toggle RTL/LTR"><i class="fa-solid fa-right-left"></i></button>
+                <button id="theme-toggle" class="theme-toggle fs-4"><i class="fa-solid fa-moon"></i></button>
+                <button class="notification-btn fs-4">
                     <i class="fa-regular fa-bell"></i>
                     <span class="badge rounded-pill">3</span>
                 </button>
