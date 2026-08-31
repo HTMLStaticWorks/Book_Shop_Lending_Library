@@ -692,43 +692,43 @@ h1, h2, h3, h4, h5, h6,
 h1, .h1, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
   font-family: var(--font-heading) !important;
   font-weight: 700 !important;
-  font-size: clamp(2rem, 3.5vw, 2.75rem) !important;
+  font-size: clamp(2.5rem, 4vw, 3.5rem) !important;
 }
 h2, .h2 {
   font-family: var(--font-heading) !important;
   font-weight: 540 !important;
-  font-size: clamp(1.75rem, 2.5vw, 2.25rem) !important;
+  font-size: clamp(2rem, 3vw, 2.75rem) !important;
 }
 h3, .h3 {
   font-family: var(--font-heading) !important;
   font-weight: 520 !important;
-  font-size: clamp(1.5rem, 2vw, 1.75rem) !important;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem) !important;
 }
 h4, h5, h6, .h4, .h5, .h6 {
   font-family: var(--font-heading) !important;
   font-weight: 500 !important;
-  font-size: clamp(1.1rem, 1.5vw, 1.25rem) !important;
+  font-size: clamp(1.25rem, 1.75vw, 1.5rem) !important;
 }
 p, body {
   font-family: var(--font-body) !important;
   font-weight: 430 !important;
-  font-size: clamp(0.875rem, 1vw, 1rem) !important;
+  font-size: clamp(1rem, 1.2vw, 1.125rem) !important;
 }
 .lead, .subheading, .section-title p {
   font-weight: 500 !important;
-  font-size: clamp(1rem, 1.2vw, 1.125rem) !important;
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem) !important;
 }
 .btn, button, .btn-premium, .btn-outline-premium {
   font-weight: 520 !important;
-  font-size: clamp(0.875rem, 1vw, 1rem) !important;
+  font-size: clamp(1rem, 1.1vw, 1.125rem) !important;
 }
 label, .nav-link {
   font-weight: 500 !important;
-  font-size: clamp(0.875rem, 1vw, 1rem) !important;
+  font-size: clamp(1rem, 1.1vw, 1.125rem) !important;
 }
 small, .caption, figcaption, .text-muted {
   font-weight: 400 !important;
-  font-size: clamp(0.75rem, 0.8vw, 0.875rem) !important;
+  font-size: clamp(0.875rem, 1vw, 1rem) !important;
 }
 b, strong, .fw-bold {
   font-weight: 500 !important;
